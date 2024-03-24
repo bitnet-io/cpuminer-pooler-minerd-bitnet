@@ -1,3 +1,21 @@
+
+# macOS arm64 build requires macOS homebrew `brew`
+
+```
+install brew
+
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+brew install curl autoconf automake pkg-config
+export LDFLAGS="-L/opt/homebrew/opt/curl/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/curl/include"
+export CFLAGS="-I/opt/homebrew/opt/curl/include -lcurl"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/curl/lib/pkgconfig"
+sh autogen.sh
+./configure
+make -j8
+```
+
 This is a multi-threaded CPU miner for Litecoin and Bitcoin,
 fork of Jeff Garzik's reference cpuminer.
 
